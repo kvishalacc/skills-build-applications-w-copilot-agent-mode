@@ -36,8 +36,11 @@ def api_root(request):
         "example_activities_url": base_url + "activities/"
     })
 
+from django.views.generic import RedirectView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', RedirectView.as_view(url='/api/', permanent=False)),
     path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),
 ]
